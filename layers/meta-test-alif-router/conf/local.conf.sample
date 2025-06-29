@@ -282,7 +282,6 @@ KERNEL_MTD_LEN = "0x800000"
 #  "0" - disable OSPI0 as a HyperRAM.
 # Default value: "1"
 #HYPRAM_EN = "1"
-HYPRAM_AS_LOWMEM = "1"
 
 # FLASH_EN - Enables OSPI1 NOR flash (0xC0000000) in XiP mode.
 # Supported values are,
