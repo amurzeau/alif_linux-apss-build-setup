@@ -1,0 +1,28 @@
+#!/bin/sh
+
+case "$1" in
+  start)
+    # Avoid oom killer due to low lowmem memory when setting eth0 up
+    echo "4 0 0" > /proc/sys/vm/lowmem_reserve_ratio
+
+    nft add table ip my_nat
+    nft add chain ip my_nat my_masquerade { type nat hook postrouting priority srcnat\; }
+    nft add rule ip my_nat my_masquerade oif eth0 ip saddr 192.168.10.0/24 masquerade
+
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+    ip addr add 192.168.10.1/24 dev eth0
+    ip addr add 192.168.1.100/24 dev eth0
+    ip link set eth0 up
+    sleep 1
+    ip route add 0.0.0.0/0 via 192.168.1.1
+    exit 0
+    ;;
+  stop)
+    exit 0
+    ;;
+  *)
+    echo "error: invalid option $1.".
+    echo "usage: $(readlink -f $0) start|stop"
+    exit 1
+    ;;
+esac

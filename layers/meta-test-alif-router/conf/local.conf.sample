@@ -267,7 +267,7 @@ CONF_VERSION = "1"
 # KERNEL_MTD_START_ADDR. Default value: "0x200000" (2 Megabytes).
 # Note: Minimum value of KERNEL_MTD_LEN should be at least "0x100000"(1 MB).
 #KERNEL_MTD_LEN = "0x200000"
-KERNEL_MTD_LEN = "0x800000"
+#KERNEL_MTD_LEN = "0x800000"
 
 # UART - Selects which UART is used as the boot/serial console for the APSS.
 # The variable can contain the following values:
@@ -335,8 +335,8 @@ KERNEL_MTD_LEN = "0x800000"
 #  "apss-dac12"     - add digital to analog converter (DAC) related packages
 #                     and Linux kernel configs into the images.
 #DISTRO_FEATURES_append += "apss-mhu apss-i3c"
-DISTRO_FEATURES_append += " apss-ethernet"
-IMAGE_INSTALL_append = " iptables tcpdump iperf3"
+DISTRO_FEATURES_append += " apss-ethernet apss-sd-share apss-usb apss-i2c apss-spi apss-crc"
+IMAGE_INSTALL_append = " nftables"
 #
 # APSS build configuration end
 #
@@ -348,7 +348,7 @@ IMAGE_INSTALL_append = " iptables tcpdump iperf3"
 #  "1" - uses OSPI1 NOR flash to boot xipImage and cramfs-xip.
 #  "0" - uses MRAM flash to boot xipImage and cramfs-xip.
 # Default value: "0"
-OSPI_BOOT = "1"
+#OSPI_BOOT = "1"
 #
 
 #
@@ -370,5 +370,8 @@ OSPI_BOOT = "1"
 #        apss-i2c apss-spi apss-debug apss-crc.
 #  "0" - builds default tiny xipImage and cramfs-xip.
 # Default value: "1"
-# BASE_IMAGE = "1"
+BASE_IMAGE = "0"
 #
+
+
+APPEND += "quiet"
