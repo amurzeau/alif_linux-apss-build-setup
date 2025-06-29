@@ -1,0 +1,11 @@
+--- configure   2025-06-29 21:02:26.852429721 +0200
++++ configure   2025-06-28 10:51:43.957087614 +0200
+@@ -42473,7 +42473,7 @@
+ if ac_fn_c_try_run "$LINENO"; then :
+   gl_cv_func_mknod_works=yes
+ else
+-  if test $? = 99 && test x"$FORCE_UNSAFE_CONFIGURE" = x; then
++  if test $? = 99 && false && test x"$FORCE_UNSAFE_CONFIGURE" = x; then
+             { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+ as_fn_error $? "you should not run configure as root (set FORCE_UNSAFE_CONFIGURE=1 in environment to bypass this check)

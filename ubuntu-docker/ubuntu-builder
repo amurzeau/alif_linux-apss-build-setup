@@ -8,19 +8,19 @@ RELEASEDIR=$(dirname $(readlink -f $0))
 USER_ENVIORNMENT="--hostname $HOSTNAME \
                  -e HOME=$LOCALHOME \
                  -e LANG=en_US.UTF-8 \
-                 -e PGID=$(id -g) \
-                 -e PUID=$(id -u) \
-                 -e USERNAME=$USER \
+                 -e PGID=0 \
+                 -e PUID=0 \
+                 -e USERNAME=root \
                  -e DISTRO=$DISTRO \
                  -e VERSION=$VERSION \
                  -e CURRENTPATH=$(pwd) \
                  -v $RELEASEDIR/../..:$LOCALHOME \
                  -v $LOCALHOME/.git/:$LOCALHOME/.git/ \
-		 --privileged -v /dev:/dev \
+		 --privileged  \
 "
 
-sudo docker run -it \
+docker run -it \
     --name $DISTRO-$VERSION-$STAMP \
     $USER_ENVIORNMENT \
     $IMAGE
-sudo docker rm $DISTRO-$VERSION-$STAMP
+docker rm $DISTRO-$VERSION-$STAMP

@@ -5,4 +5,4 @@ VERSION="18.04"
 IMAGE="apss/$DISTRO-builder:v$VERSION"
 
 # build docker image with the required username
-sudo docker build -t $IMAGE -f $ABS_DOCKER_DIR/Dockerfile $ABS_DOCKER_DIR
+docker build -t $IMAGE -f $ABS_DOCKER_DIR/Dockerfile $ABS_DOCKER_DIR
