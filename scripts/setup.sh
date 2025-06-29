@@ -49,7 +49,7 @@ source ${TOPDIR}/layers/openembedded-core/oe-init-build-env ${BUILD_DIR}
 # Use custom local.conf from meta-alif
 LOCALCONF="$(readlink -f conf/local.conf)"
 OELOCALSAMPLE="${TOPDIR}/layers/openembedded-core/meta/conf/local.conf.sample"
-ALIFLOCALSAMPLE="${TOPDIR}/layers/meta-alif-ensemble/conf/local.conf.sample"
+ALIFLOCALSAMPLE="${TOPDIR}/layers/meta-test-alif-router/conf/local.conf.sample"
 if diff -q $LOCALCONF $OELOCALSAMPLE ; then
    cp -f $ALIFLOCALSAMPLE $LOCALCONF
 fi
@@ -57,12 +57,13 @@ unset LOCALCONF OELOCALSAMPLE ALIFLOCALSAMPLE
 
 # Add dependent layers
 LAYERS="meta-alif  \
-meta-alif-ensemble \
+meta-yocto/meta-poky \
 meta-openembedded/meta-oe \
 meta-openembedded/meta-filesystems \
 meta-openembedded/meta-python \
-meta-yocto/meta-poky \
-meta-alif-iot"
+meta-alif-ensemble \
+meta-alif-iot \
+meta-test-alif-router"
 
 for iter in ${LAYERS} ; do
    if [ ! -f "${BUILD_DIR}/.${iter///}" ] ; then
